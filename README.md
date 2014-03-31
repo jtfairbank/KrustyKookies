@@ -12,6 +12,7 @@ software system.  The pilot will focus on the production side.
 
  0. Intro
  1. Specifications
+ 2. Setup
 
 
 Specifications
@@ -84,3 +85,13 @@ Requirements:
       - Dictate what goes on the truck.
       - The driver receives a `Loading Bill`, which is identical to a loading order but contains a field for the customer to acknowledge receipt of their cookies.  This does not need to be saved in the database.
       - When the loading bill is created, the pallets are considered delivered and should be updated with customer data and date of delivery.
+
+
+Setup
+------------------------------------------------------------
+
+### Database ###
+
+ 1. Make sure that no database `KrustyKookies` exists.
+ 2. Run `setup/DB_setup.sql` to create the database, tables, and relational structure.
+ 3. Import sample data, either `setup/sample_data.sql` or a local dataset.
