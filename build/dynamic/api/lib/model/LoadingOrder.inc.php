@@ -29,8 +29,8 @@ class LoadingOrder {
    */
   public static function FromData($data) {
     return new LoadingOrder(
-      $data->id
-      $data->truckID
+      $data->id,
+      $data->truckID,
       $data->items
     );
   }
@@ -48,7 +48,7 @@ class LoadingOrder {
     );
   }
 
-  public static function ToEntry() {
+  public function ToEntry() {
     $entry = (object) [
       "id"       => $this->id,
       "truck_id" => $this->truckID,

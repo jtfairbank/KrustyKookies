@@ -93,7 +93,7 @@ class RecipeController implements CrudInterface, APIActionInterface {
 
     // build sql statement
     $vals = [
-      ":recipeID": $id
+      ":recipeID" => $id
     ];
     $sql = <<<SQL
       SELECT *
@@ -119,6 +119,20 @@ SQL;
     }
 
     return $recipes;
+  }
+
+
+  /* Update
+   * ------------------------------------------------------ */
+  public static function update($recipe) {
+    throw new Exception("RecipeController: not implemented exception.");
+  }
+
+
+  /* Delete
+   * ------------------------------------------------------ */
+  public static function delete($id) {
+    throw new Exception("RecipeController: not implemented exception.");
   }
 
 }

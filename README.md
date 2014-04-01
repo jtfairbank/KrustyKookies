@@ -33,9 +33,10 @@ The cookie production team needs a program that handles raw materials and recipe
 
 Requirements:
 
-  * `Raw materials` need Read and Update functionality.
+  * `Raw Materials` need Read and Update functionality.
       - They are initially entered into the system manually.  It is assumed that the order history is also entered manually when new materials come in.
       - When a pallet of cookies is produced, the materials used to make it should be debited for the existing stock.  Error checking should ensure that enough materials exist to create the pallet.
+        + This functionality will be present in the full system, but not implemented for the pilot since the pallets are actually created before being checked into our system.
       - They "must be able to check the amount in store of each ingredient, and to see when, and how much of, an ingredient was last delivered into storage."  This implies that a raw materials order history must be maintained.
 
   * `Recipes` need full CRUD functionality.

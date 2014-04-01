@@ -47,6 +47,13 @@ class RawMaterialController implements CrudInterface, APIActionInterface {
   }
 
 
+  /* Create
+   * ------------------------------------------------------ */
+  public static function create($ingredient) {
+    throw new Exception("RawIngredientController: not implemented exception.");
+  }
+
+
   /* Read
    * ------------------------------------------------------------ */
   public static function get($id) {
@@ -73,7 +80,7 @@ class RawMaterialController implements CrudInterface, APIActionInterface {
     return $materials;
   }
 
-  public static canDebit($recipe) {
+  public static function canDebit($recipe) {
     $canDebit = true;
 
     foreach ($recipe->ingredients as $ingredient) {
@@ -92,6 +99,10 @@ class RawMaterialController implements CrudInterface, APIActionInterface {
 
   /* Update
    * ------------------------------------------------------ */
+  public static function update($ingredient) {
+    throw new Exception("RawIngredientController: not implemented exception.");
+  }
+
   public static function debit($recipe) {
     if (static::canDebit($recipe)) {
       $debitedMaterials = [];
@@ -108,6 +119,13 @@ class RawMaterialController implements CrudInterface, APIActionInterface {
     } else {
       throw new RangeException("RawIngredientController::debit cannot reduce a raw material below an amount of 0.");
     }
+  }
+
+
+  /* Delete
+   * ------------------------------------------------------ */
+  public static function delete($id) {
+    throw new Exception("RawIngredientController: not implemented exception.");
   }
 
 }

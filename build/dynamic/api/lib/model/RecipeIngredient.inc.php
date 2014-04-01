@@ -49,7 +49,7 @@ class RecipeIngredient implements ModelInterface {
     );
   }
 
-  public static function ToEntry() {
+  public function ToEntry() {
     $entry = (object) [
       "id"              => $this->id,
       "recipe_id"       => $this->recipeID,

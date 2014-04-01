@@ -52,7 +52,7 @@ class Order {
     );
   }
 
-  public static function ToEntry() {
+  public function ToEntry() {
     $entry = (object) [
       "id"            => $this->id,
       "customer_id"   => $this->customer->id,

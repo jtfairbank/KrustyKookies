@@ -1,23 +1,23 @@
 <?php
 
-/* Customer
+/* RawMaterial
  * ========================================================================== */
-class Customer implements ModelInterface {
+class RawMaterial implements ModelInterface {
 
   public $id;
   public $name;
-  public $address;
+  public $amount;
 
   public function __toString() {
-    return "" . $this->id . $this->name . $this->address;
+    return "" . $this->id . $this->name . $this->amount;
   }
 
   /* Constructors
    * ------------------------------------------------------ */
-  public function __construct($id, $name, $address) {
+  public function __construct($id, $name, $amount) {
     $this->id = $id;
     $this->name = $name;
-    $this->address = $address;
+    $this->address = $amount;
   }
 
   /* Converters
@@ -25,26 +25,26 @@ class Customer implements ModelInterface {
    * See the `ModelInterface`.
    */
   public static function FromData($data) {
-    return new Customer(
+    return new RawMaterial(
       $data->id,
       $data->name,
-      $data->address
+      $data->amount
     );
   }
 
   public static function FromEntry($entry) {
-    return new Customer(
+    return new RawMaterial(
       $entry->id,
       $entry->name,
-      $entry->address
+      $entry->amount_in_stock
     );
   }
 
-  public static function ToEntry() {
+  public function ToEntry() {
     $entry = (object) [
-      "id"      => $this->id,
-      "name"    => $this->name,
-      "address" => $this->address,
+      "id"              => $this->id,
+      "name"            => $this->name,
+      "amount_in_stock" => $this->amount,
     ];
 
     return $entry;

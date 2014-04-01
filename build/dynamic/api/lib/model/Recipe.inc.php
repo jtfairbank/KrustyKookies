@@ -29,8 +29,8 @@ class Recipe {
    */
   public static function FromData($data) {
     return new Recipe(
-      $data->id
-      $data->name
+      $data->id,
+      $data->name,
       $data->ingredients
     );
   }
@@ -38,7 +38,7 @@ class Recipe {
   public static function FromEntry($entry, $ingredientEntries) {
     $ingredients = [];
     foreach ($ingredientEntries as $ingredientEntry) {
-      array_push($ingredients, new RecipeItem($ingredientEntry));
+      array_push($ingredients, RecipeIngredient::FromEntry($ingredientEntry));
     }
 
     return new Recipe(
@@ -48,7 +48,7 @@ class Recipe {
     );
   }
 
-  public static function ToEntry() {
+  public function ToEntry() {
     $entry = (object) [
       "id"   => $this->id,
       "name" => $this->name,

@@ -180,8 +180,8 @@ class PalletController implements CrudInterface, APIActionInterface {
 
     // build sql statement
     $vals = [
-      ":start": $start,
-      ":end": $end
+      ":start" => $start,
+      ":end" => $end
     ];
     $sql = <<<SQL
       SELECT *
@@ -203,7 +203,7 @@ SQL;
 
     // build sql statement
     $vals = [
-      ":recipeID": $recipeID
+      ":recipeID" => $recipeID
     ];
     $sql = <<<SQL
       SELECT *
@@ -226,7 +226,7 @@ SQL;
 
     // build sql statement
     $vals = [
-      ":customerID": $customer->id
+      ":customerID" => $customer->id
     ];
     $sql = <<<SQL
       SELECT `pallets`.`*`
@@ -253,6 +253,10 @@ SQL;
 
   /* Update
    * ------------------------------------------------------ */
+  public static function update($pallet) {
+    throw new Exception("PalletController: not implemented exception.");
+  }
+
   public static function blockAllInRange($recipe, $start, $end) {
     $blockedPallets = [];
 
@@ -266,6 +270,13 @@ SQL;
     }
 
     return $blockedPallets;
+  }
+
+
+  /* Delete
+   * ------------------------------------------------------ */
+  public static function delete($id) {
+    throw new Exception("PalletController: not implemented exception.");
   }
 
 }

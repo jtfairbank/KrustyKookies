@@ -49,12 +49,12 @@ class Pallet implements ModelInterface {
     );
   }
 
-  public static function ToEntry() {
+  public function ToEntry() {
     $entry = (object) [
       "id"         => $this->id,
       "recipe_id"  => $this->recipe->id,
       "producedOn" => $this->producedOn,
-      "blocked"    => $this->blocked === true ? 1 : 0;
+      "blocked"    => $this->blocked === true ? 1 : 0
     ];
 
     return $entry;
