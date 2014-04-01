@@ -86,7 +86,7 @@ class RawMaterialController implements CrudInterface, APIActionInterface {
     foreach ($recipe->ingredients as $ingredient) {
       // get again incase the amount has changed since the recipe was requested by the web client
       // instead of getting it straight from $recipe->ingredients->rawMaterial
-      $material = static::get($ingredient->id);
+      $material = static::get($ingredient->rawMaterial->id);
       $leftover = $material->amount - $ingredient->amount;
       if ($leftover < 0) {
         $canDebit = false;
@@ -110,7 +110,7 @@ class RawMaterialController implements CrudInterface, APIActionInterface {
       foreach ($recipe->ingredients as $ingredient) {
         // get again incase the amount has changed since the recipe was requested by the web client
         // instead of getting it straight from $recipe->ingredients->rawMaterial
-        $material = static::get($ingredient->id);
+        $material = static::get($ingredient->rawMaterial->id);
         $material->amount -= $ingredient->amount;
         CrudController::update(static::$table, $material->toEntry());
 

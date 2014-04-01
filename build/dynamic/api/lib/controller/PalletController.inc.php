@@ -123,7 +123,7 @@ class PalletController implements CrudInterface, APIActionInterface {
     // TODO: race conition if multiple pallets are created at once
     //       use transactions, and rollback if RawMaterials::debit throws an error
     try {
-      RawIngredientController::debit($pallet->recipe);
+      RawMaterialController::debit($pallet->recipe);
 
       $id = CrudController::create(static::$table, $pallet->ToEntry());
       $createdPallet = static::get($id);

@@ -32,7 +32,7 @@ class RecipeIngredient implements ModelInterface {
    * See the `ModelInterface`.
    */
   public static function FromData($data) {
-    return new Customer(
+    return new RecipeIngredient(
       $data->id,
       $data->recipeID,
       $data->rawMaterial,
@@ -41,7 +41,7 @@ class RecipeIngredient implements ModelInterface {
   }
 
   public static function FromEntry($entry) {
-    return new Customer(
+    return new RecipeIngredient(
       $entry->id,
       $entry->recipe_id,
       RawMaterialController::get($entry->raw_material_id),

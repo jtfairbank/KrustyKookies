@@ -1,7 +1,7 @@
 {% block content %}
 
 {% if view == "FORM" %}
-  <form name="checkin" action="checkinPallet.php" method="POST">
+  <form action="checkinPallet.php" method="POST">
     <select name="recipeID">
       <option value=""></option>
 
@@ -11,11 +11,14 @@
 
     </select>
 
-    <input type="submit" value="Check In Pallet" />
+    <input name="checkin" type="submit" value="Check In Pallet" />
   </form>
 
 {% elseif view == "CHECKED_IN" %}
-  <p class="alert alert-success">The pallet was successfully checked into the deep freezer.</p>
+  <p class="alert alert-success">
+    The pallet was successfully checked into the deep freezer.
+    <a href="checkinPallet.php">Go Back</a>
+  </p>
 
 {% elseif view == "CHECKIN_FAILED" %}
   <p class="alert alert-error">The pallet could not be created because not enough materials exist.</p>

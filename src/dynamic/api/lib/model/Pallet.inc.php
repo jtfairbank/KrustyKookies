@@ -44,17 +44,17 @@ class Pallet implements ModelInterface {
     return new Pallet(
       $entry->id,
       RecipeController::get($entry->recipe_id),
-      $entry->producedOn,
+      $entry->produced_on,
       $entry->blocked === 1 ? true : false
     );
   }
 
   public function ToEntry() {
     $entry = (object) [
-      "id"         => $this->id,
-      "recipe_id"  => $this->recipe->id,
-      "producedOn" => $this->producedOn,
-      "blocked"    => $this->blocked === true ? 1 : 0
+      "id"          => $this->id,
+      "recipe_id"   => $this->recipe->id,
+      "produced_on" => $this->producedOn,
+      "blocked"     => $this->blocked === true ? 1 : 0
     ];
 
     return $entry;

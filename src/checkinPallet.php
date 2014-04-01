@@ -3,7 +3,7 @@ require_once('dynamic/template/setup.php');
 require_once('dynamic/api/lib/loader.php');
 
 $view = 'FORM';
-if (array_key_exists('checkin', $_POST)) {
+if (array_key_exists('recipeID', $_POST)) {
   $view = 'CHECKED_IN';
 
   $recipe = RecipeController::get($_POST['recipeID']);

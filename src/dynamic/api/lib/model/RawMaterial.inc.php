@@ -17,7 +17,7 @@ class RawMaterial implements ModelInterface {
   public function __construct($id, $name, $amount) {
     $this->id = $id;
     $this->name = $name;
-    $this->address = $amount;
+    $this->amount = $amount;
   }
 
   /* Converters
