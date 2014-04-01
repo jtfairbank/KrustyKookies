@@ -1,0 +1,73 @@
+<?php
+
+/* Application Wide Settings
+ * ==========================================================================
+ * The global `$settings` variable is created as a way to pass in application
+ * wide settings on a per-deployment basis.  This skeleton file lays out the
+ * structure for a deployment specific settings file- you can copy it to
+ * `settings.inc.php` and fill in the default values.  `settings.inc.php` is
+ * specifically blocked by gitignore so that no sensitive data (ie database
+ * authentication data) is committed to the git repo.
+ *
+ * **DO NOT COMMIT YOUR OWN `settings.inc.php` FILE**
+ *
+ * Furthermore the settings file will not overwrite any preset settings.
+ * The rs api loader requires `site/app/rs/api/lib/settings.inc.php`, however by
+ * including a settings file or otherwise setting fields in `$settings` before
+ * the loader is called, deployments can be customized without changing the
+ * global `settings.inc.php` file.  The php tests do exactly this- they include
+ * a custom settings file that sets `$settings['root']` so that php require
+ * works from the test directory.  The global settings file then ignores the
+ * `root` setting, so that nothing is messed up.
+ */
+
+if (!isset($settings) || !is_array($settings)) {
+  $settings = [];
+}
+
+/* Database Settings
+ * ------------------------------------------------------------ */
+
+/* `db_url`
+ *
+ * The database connection string. Example:
+ *
+ *     mysql:host=localhost;port=9001;dbname=app
+ */
+if (!array_key_exists('db_url', $settings)) {
+  $settings['db_url'] = 'FILL_ME_IN';
+}
+
+/* `db_user`
+ *
+ * The database user.  Example: `admin`
+ */
+if (!array_key_exists('db_user', $settings)) {
+  $settings['db_user'] = 'FILL_ME_IN';
+}
+
+/* `db_pass`
+ *
+ * The database user's password.  Example: `1234`
+ */
+if (!array_key_exists('db_pass', $settings)) {
+  $settings['db_pass'] = 'FILL_ME_IN';
+}
+
+/* Include & Require Settings
+ * ------------------------------------------------------------ */
+
+/* `$settings['root']`
+ *
+ * Specify the app's base directory.  In a standard deployment, the server's
+ * base should point to `site/app/` which the `root` setting defaults to.  If
+ * the server's base is a different directory (ie `site/`) then the line should
+ * be changed to reflect that:
+ *
+ *     $settings['root'] = $_SERVER['DOCUMENT_ROOT'] . '/app';
+ */
+if (!array_key_exists('root', $settings)) {
+  $settings['root'] = $_SERVER['DOCUMENT_ROOT'];
+}
+
+?>

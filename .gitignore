@@ -1,2 +1,5 @@
 # node
 node_modules/
+
+# php api
+settings.inc.php
