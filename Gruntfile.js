@@ -666,8 +666,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build_dynamic', [
-      'trimtrailingspaces:php'
-    , 'copy:dynamic'
+      'copy:dynamic'
   ]);
 
   grunt.registerTask('build_static', [
@@ -690,8 +689,7 @@ module.exports = function(grunt) {
         return glob.sync(src).length > 0;
       })) {
         grunt.task.run([
-            'trimtrailingspaces:js'
-          , 'concat:js'
+            'concat:js'
           , 'uglify:yomama'
         ]);
       }
