@@ -40,6 +40,7 @@ Requirements:
 
   * `Recipes` need full CRUD functionality.
       - Recipes aren't changed during production.  Bakers cannot update or delete a used recipe.
+      - Each recipe contains ingredients for one pallet of cookies.
 
 ### Cookie Monster ###
 
@@ -80,6 +81,7 @@ Requirements:
   * `Trucks`
       - Can hold up to 60 pallets of cookies.
       - Can deliver multiple orders.
+      - Assume that trucks have some sort of ID, but another system handles them.  Ours simply uses the *truckID* in Loading Orders, but provides no concept of Trucks themselves.
 
   * `Loading Orders` need Create and Read functionality.
       - Dictate what goes on the truck.
@@ -90,8 +92,17 @@ Requirements:
 Setup
 ------------------------------------------------------------
 
+### Installation ###
+
+ 1. [Clone the source.](https://github.com/jtfairbank/KrustyKookies)
+
 ### Database ###
 
  1. Make sure that no database `KrustyKookies` exists.
  2. Run `setup/DB_setup.sql` to create the database, tables, and relational structure.
  3. Import sample data, either `setup/sample_data.sql` or a local dataset.
+ 4. Copy `build/dynamic/api/lib/settings.php.skel` to `build/dynamic/api/lib/settings.php` and fill it in with the mysql connection info.
+
+### Web App ###
+
+ 1. Point your webserver to `build/`.
