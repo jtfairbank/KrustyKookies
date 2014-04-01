@@ -4,21 +4,38 @@
   <form action="searchPallets.php" method="GET">
     <p>Search pallets by Recipe:</p>
 
-    <input type="hidden" name="searchType" value="ByRecipe" />
-
     <select name="recipeID">
       <option value=""></option>
 
       {% for recipe in recipes %}
       <option value="{{ recipe.id }}">{{ recipe.name }}</option>
       {% endfor %}
-
-      <input type="submit" value="Search by Recipe" />
     </select>
+
+    <input type="hidden" name="searchType" value="ByRecipe" />
+    <input type="submit" value="Search by Recipe" />
+  </form>
+
+  <form action="searchPallets.php" method="GET">
+    <p>Search pallets by Date Range:</p>
+
+    <input type="date" name="start" value="" />
+    <input type="date" name="end" value="" />
+
+    <input type="hidden" name="searchType" value="ByDateRange" />
+    <input type="submit" value="Search by Date Range" />
   </form>
 
 {% elseif view == "RECIPE_SEARCH" %}
   <p>Searching for all pallets by recipe {{ searchResults.recipe.name }}</p>
+
+{% elseif view == "DATERANGE_SEARCH" %}
+  <p>Searching for all pallets by date range ({{ searchResults.start }} - {{ searchResults.end }}).</p>
+
+{% endif %}
+
+{% if view != "CHOOSE_SEARCH" %}
+  <p><a href="searchPallets.php">Go back to search.</a></p>
 
   <table>
     <thead>

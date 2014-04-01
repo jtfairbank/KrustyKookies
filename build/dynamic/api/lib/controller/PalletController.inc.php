@@ -177,6 +177,7 @@ class PalletController implements CrudInterface, APIActionInterface {
   public static function getAllInRange($start, $end) {
     // get db info
     $db = getDBConn();
+    $table = static::$table;
 
     // build sql statement
     $vals = [
@@ -185,7 +186,7 @@ class PalletController implements CrudInterface, APIActionInterface {
     ];
     $sql = <<<SQL
       SELECT *
-      FROM `{static::$table}`
+      FROM `$table`
       WHERE DATE(`produced_on`) BETWEEN DATE(:start) AND DATE(:end)
 SQL;
 
