@@ -2,50 +2,9 @@
 
 /* RawMaterial Controller
  * ================================================================================ */
-class RawMaterialController implements CrudInterface, APIActionInterface {
+class RawMaterialController implements CrudInterface {
 
   protected static $table = "raw_materials";
-
-
-  /* Perform an Action
-   * ------------------------------------------------------------ */
-  public static function takeAction($request) {
-    $response = null;
-
-    $action = $request->getAction();
-    switch($action) {
-      case "get":
-        $id = $request->getData();
-
-        try {
-          $material = static::get($id);
-          $response = new RestResponse(200, $material, 'text/json');
-
-        } catch(ReadException $e) {
-          $response = new RestResponse(404, null, 'text/plain');
-        }
-
-        break;
-
-      case "getAll":
-        $materials = static::getAll();
-
-        if (count($materials) > 0) {
-          $response = new RestResponse(200, $materials, 'text/json');
-        } else {
-          $response = new RestResponse(404, [], 'text/json');
-        }
-
-        break;
-
-      default:
-        throw new Exception("Invalid Parameter: RawMaterialController->takeAction doesn't know how to handle action $action.");
-        break;
-    }
-
-    return $response;
-  }
-
 
   /* Create
    * ------------------------------------------------------ */

@@ -2,56 +2,9 @@
 
 /* Recipe Controller
  * ================================================================================ */
-class RecipeController implements CrudInterface, APIActionInterface {
+class RecipeController implements CrudInterface {
 
   protected static $table = "recipes";
-
-
-  /* Perform an Action
-   * ------------------------------------------------------------ */
-  public static function takeAction($request) {
-    $response = null;
-
-    $action = $request->getAction();
-    switch($action) {
-      case "create":
-        $recipe = Recipe::FromData($request->getData());
-        $createdRecipe = static::create($recipe);
-        $response = new RestResponse(201, $createdRecipe, 'text/json');
-
-        break;
-
-      case "get":
-        $id = $request->getData();
-
-        try {
-          $recipe = static::get($id);
-          $response = new RestResponse(200, $recipe, 'text/json');
-
-        } catch(ReadException $e) {
-          $response = new RestResponse(404, null, 'text/plain');
-        }
-
-        break;
-
-      case "getAll":
-        $recipes = static::getAll();
-
-        if (count($recipes) > 0) {
-          $response = new RestResponse(200, $recipes, 'text/json');
-        } else {
-          $response = new RestResponse(404, [], 'text/json');
-        }
-
-        break;
-
-      default:
-        throw new Exception("Invalid Parameter: RecipeController->takeAction doesn't know how to handle action $action.");
-        break;
-    }
-
-    return $response;
-  }
 
 
   /* Create

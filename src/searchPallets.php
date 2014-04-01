@@ -38,4 +38,3 @@ echo $twig->render("searchPallets.twig", array(
   "searchResults" => $searchResults,
 ));
 ?>
-
