@@ -3,3 +3,6 @@ node_modules/
 
 # php api
 settings.inc.php
+
+# SASS
+.sass-cache

@@ -1,0 +1,68 @@
+{# Twig Macros
+------------------------------------------------------------ #}
+{% macro mainNav() %}
+{# TODO #}
+<!--
+<nav class="mainNav text-center">
+  <ul class="nav nav-pills">
+    <li><a href="index.php">Home</a></li>
+    <li><a href="amenities.php">Amenities &amp; Activities</a></li>
+    <li><a href="cabins.php">Cabins &amp; Campsites</a></li>
+    <li><a href="policy.php">General Info</a></li>
+    <li><a href="contact.php">Contact Us</a></li>
+    <li><a target="new" href="http://sunsetbayresort.wordpress.com/blog/">Our Blog</a></li>
+  </ul>
+</nav>
+-->
+{% endmacro %}
+{% from "site.twig" import mainNav as mainNav %}
+
+
+{# Base Site Template
+------------------------------------------------------------ #}
+<!DOCTYPE html>
+
+<html>
+  <head>
+  {% block head %}
+    <meta charset="utf-8" lang="en">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{ title }} | Krusty Kookies</title>
+    
+    {% block css %}
+    <link href="lib/bootstrap-3.1.1-dist/css/bootstrap.min.css" rel="stylesheet" media="all" />
+
+    <link href="static/css/main.css" rel="stylesheet" media="all" />
+    {% endblock %}
+
+    {% block js %}
+    <script src="lib/jquery/jquery-2.1.0.min.js"></script>
+    {% endblock %}
+    
+  {% endblock head %}
+  </head>
+  
+  <body>
+      
+    <header id="mainheader" class="container text-center">
+    {% block header %}
+      <h1>Krusty Kookies</h1>
+      {{ mainNav() }}      
+    {% endblock header %}
+    </header>
+      
+    <section id="content">
+    {% block content %}{% endblock %}
+    </section>     
+  
+    <footer id="mainfooter" class="text-center">
+    {% block footer %}
+      {{ mainNav() }}
+      {# TODO: dynamic year #}
+      {# <?php date_default_timezone_set("America/Chicago"); echo date("Y"); ?> #}
+      <p>J. Taylor Fairbank | Copyright &copy; 2013</p>
+    {% endblock footer %}
+    </footer>
+  
+  </body>
+</html>
