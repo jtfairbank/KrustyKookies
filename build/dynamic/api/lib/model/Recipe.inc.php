@@ -12,7 +12,12 @@ class Recipe {
   public $ingredients;
 
   public function __toString() {
-    return "" . $this->id . $this->name . $this->ingredients;
+    $ingredientsString = "";
+    foreach ($this->ingredients as $ingredient) {
+      $ingredientsString .= $ingredient;
+    }
+
+    return "" . $this->id . $this->name . $ingredientsString;
   }
 
   /* Constructor

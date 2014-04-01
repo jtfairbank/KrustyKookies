@@ -194,12 +194,16 @@ SQL;
     $statement->execute($vals);
 
     // return the models
-    return $statement->fetchAll(PDO::FETCH_OBJ);
+    $palletEntries = $statement->fetchAll(PDO::FETCH_OBJ);
+    $pallets = static::palletEntriesToPallets($palletEntries);
+
+    return $pallets;
   }
 
   public static function getAllByRecipe($recipeID) {
     // get db info
     $db = getDBConn();
+    $table = static::$table;
 
     // build sql statement
     $vals = [
@@ -207,7 +211,7 @@ SQL;
     ];
     $sql = <<<SQL
       SELECT *
-      FROM `{static::$table}`
+      FROM `$table`
       WHERE `recipe_id` = :recipeID
 SQL;
 
@@ -216,7 +220,10 @@ SQL;
     $statement->execute($vals);
 
     // return the models
-    return $statement->fetchAll(PDO::FETCH_OBJ);
+    $palletEntries = $statement->fetchAll(PDO::FETCH_OBJ);
+    $pallets = static::palletEntriesToPallets($palletEntries);
+
+    return $pallets;
   }
 
   public static function getAllByCustomer($customer) {
@@ -247,7 +254,21 @@ SQL;
     $statement->execute($vals);
 
     // return the models
-    return $statement->fetchAll(PDO::FETCH_OBJ);
+    $palletEntries = $statement->fetchAll(PDO::FETCH_OBJ);
+    $pallets = static::palletEntriesToPallets($palletEntries);
+
+    return $pallets;
+  }
+
+  protected static function palletEntriesToPallets($entries) {
+    $pallets = [];
+
+    foreach ($entries as $entry) {
+      $pallet = Pallet::FromEntry($entry);
+      array_push($pallets, $pallet);
+    }
+
+    return $pallets;
   }
 
 

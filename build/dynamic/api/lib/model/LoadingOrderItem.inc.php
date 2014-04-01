@@ -9,7 +9,7 @@ class LoadingOrderItem implements ModelInterface {
   public $pallet;
 
   public function __toString() {
-    return "" . $id . $loadingOrderID . $pallet;
+    return "" . $this->id . $this->loadingOrderID . $this->pallet;
   }
 
   /* Constructors

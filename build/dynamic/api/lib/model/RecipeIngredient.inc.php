@@ -10,7 +10,7 @@ class RecipeIngredient implements ModelInterface {
   public $amount;
 
   public function __toString() {
-    return "" . $id . $recipeID . $rawMaterial . $amount;
+    return "" . $this->id . $this->recipeID . $this->rawMaterial . $this->amount;
   }
 
   /* Constructors
