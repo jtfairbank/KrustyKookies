@@ -101,7 +101,9 @@ Setup
 
  1. Make sure that no database `KrustyKookies` exists.
  2. Run `setup/DB_setup.sql` to create the database, tables, and relational structure.
- 3. Import sample data, either `setup/sample_data.sql` or a local dataset.
+ 3. Import sample data found in the Apendices: `setup/apendice_data.sql`.
+      - (optional) Instead, import sample data for a full system demonstration: `setup/demo_data.sql`
+      - (optinoal) Instead, import your own sample data.
  4. Copy `build/dynamic/api/lib/settings.php.skel` to `build/dynamic/api/lib/settings.php` and fill it in with the mysql connection info.
 
 ### Web App ###
