@@ -45,7 +45,7 @@ class Pallet implements ModelInterface {
       $entry->id,
       RecipeController::get($entry->recipe_id),
       $entry->produced_on,
-      $entry->blocked === 1 ? true : false
+      $entry->blocked == 1 ? true : false // can'te use `=== 1` since $entry->blocked is a string
     );
   }
 

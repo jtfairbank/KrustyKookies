@@ -37,7 +37,6 @@ if (array_key_exists("searchType", $_GET)) {
       "customer" => $customer,
       "pallets" => $pallets,
     ];
-
   }
 }
 

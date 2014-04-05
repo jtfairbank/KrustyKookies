@@ -1,3 +1,5 @@
+{% from "palletList.twig" import listPallets as listPallets %}
+
 {% block content %}
 
 {% if view == "CHOOSE_SEARCH" %}
@@ -55,33 +57,7 @@
 {% if view != "CHOOSE_SEARCH" %}
   <p><a href="searchPallets.php">Go back to search.</a></p>
 
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Recipe</th>
-        <th>Produced On</th>
-        <th>Blocked</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      {% for pallet in searchResults.pallets %}
-      <tr>
-        <td>{{ pallet.id }}</td>
-        <td>{{ pallet.recipe.name }}</td>
-        <td>{{ pallet.producedOn }}</td>
-        <td>
-          {% if pallet.blocked == true %}
-            yes
-          {% else %}
-            no
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  {{ listPallets(searchResults.pallets) }}
 
 {% endif %}
 

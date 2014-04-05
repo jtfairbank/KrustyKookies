@@ -167,12 +167,12 @@ SQL;
     throw new Exception("PalletController: not implemented exception.");
   }
 
-  public static function blockAllInRange($recipe, $start, $end) {
+  public static function blockAllInRange($recipeID, $start, $end) {
     $blockedPallets = [];
 
-    $pallets = static::getAllInRange($recipe, $start, $end);
+    $pallets = static::getAllInRange($start, $end);
     foreach ($pallets as &$pallet) {
-      if ($pallet->recipe->id === $recipe->id) {
+      if ($pallet->recipe->id === $recipeID) {
         $pallet->blocked = true;
         CrudController::update(static::$table, $pallet->ToEntry());
         array_push($blockedPallets, $pallet);

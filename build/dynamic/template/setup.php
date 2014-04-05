@@ -6,6 +6,7 @@ Twig_Autoloader::register();
 
 $loader = new Twig_Loader_Filesystem(array(
   $_SERVER['DOCUMENT_ROOT'] . '/dynamic/template',
+  $_SERVER['DOCUMENT_ROOT'] . '/dynamic/template/view',
 ));
 
 $twig = new Twig_Environment($loader, array(
