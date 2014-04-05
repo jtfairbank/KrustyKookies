@@ -1,0 +1,35 @@
+{% from "palletList.twig" import listPallets as listPallets %}
+
+{% block content %}
+
+{% if view == "FORM" %}
+  <form  action="blockPallets.php" method="POST">
+    <select name="recipeID">
+      <option value=""></option>
+
+      {% for recipe in recipes %}
+      <option value="{{ recipe.id }}">{{ recipe.name }}</option>
+      {% endfor %}
+
+    </select>
+
+    <input type="date" name="start" value="" />
+    <input type="date" name="end" value="" />
+
+    <input name="block" type="submit" value="Block Pallets" />
+  </form>
+
+{% else %}
+  <p class="alert alert-success">
+    {{ blockedResults.recipe.name }} pallets created from
+    {{ blockResults.start }} through {{ blockResults.end }}
+    were blocked from shipment.
+
+    <a href="blockPallets.php">Go Back</a>
+  </p>
+
+  {{ listPallets(blockResults.pallets) }}
+
+{% endif %}
+
+{% endblock %}
