@@ -52,4 +52,5 @@ echo $twig->render("searchPallets.twig", array(
   // search results info
   "searchResults" => $searchResults,
 ));
+
 ?>

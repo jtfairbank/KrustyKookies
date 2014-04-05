@@ -29,5 +29,5 @@ echo $twig->render("checkinPallet.twig", array(
   'recipes' => RecipeController::getAll(),
   'view' => $view,
 ));
-?>
 
+?>
