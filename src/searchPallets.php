@@ -27,14 +27,29 @@ if (array_key_exists("searchType", $_GET)) {
       "end" => $end,
       "pallets" => $pallets,
     ];
+
+  } elseif ($_GET["searchType"] === "ByCustomer") {
+    $customer = CustomerController::get($_GET["customerID"]);
+    $pallets = PalletController::getAllByCustomer($customer);
+
+    $view = "CUSTOMER_SEARCH";
+    $searchResults = (object) [
+      "customer" => $customer,
+      "pallets" => $pallets,
+    ];
+
   }
 }
 
 echo $twig->render("searchPallets.twig", array(
-  // template variables
   "title" => "Check In Pallet",
   "view" => $view,
+
+  // searches info
+  "customers" => CustomerController::getAll(),
   "recipes" => RecipeController::getAll(),
+
+  // search results info
   "searchResults" => $searchResults,
 ));
 ?>

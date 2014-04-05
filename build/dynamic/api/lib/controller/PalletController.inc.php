@@ -67,7 +67,6 @@ class PalletController implements CrudInterface {
   public static function getAllInRange($start, $end) {
     // get db info
     $db = getDBConn();
-    $table = static::$table;
 
     // build sql statement
     $vals = [
@@ -76,7 +75,7 @@ class PalletController implements CrudInterface {
     ];
     $sql = <<<SQL
       SELECT *
-      FROM `$table`
+      FROM `pallets`
       WHERE DATE(`produced_on`) BETWEEN DATE(:start) AND DATE(:end)
 SQL;
 
@@ -120,24 +119,23 @@ SQL;
   public static function getAllByCustomer($customer) {
     // get db info
     $db = getDBConn();
-    $table = static::$table;
 
     // build sql statement
     $vals = [
       ":customerID" => $customer->id
     ];
     $sql = <<<SQL
-      SELECT `pallets`.`*`
-      FROM `$table`
+      SELECT `pallets`.*
+      FROM `pallets`
       JOIN `loading_order_items`
-        ON `$table`.`id` = `loading_order_items`.`pallet_id`
+        ON `pallets`.`id` = `loading_order_items`.`pallet_id`
       JOIN `order_items`
         ON `loading_order_items`.`order_item_id` = `order_items`.`id`
       JOIN `order`
         ON `order_items`.`order_id` = `order`.`id`
       JOIN `customers`
         ON `order`.`customer_id` = `customers`.`id`
-      WHERE `customer` = :customerID
+      WHERE `customers`.`id` = :customerID
 SQL;
 
     // execute sql

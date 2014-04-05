@@ -26,11 +26,29 @@
     <input type="submit" value="Search by Date Range" />
   </form>
 
+  <form action="searchPallets.php" method="GET">
+    <p>Search delivered pallets by Customer:</p>
+
+    <select name="customerID">
+      <option value=""></option>
+
+      {% for customer in customers %}
+      <option value="{{ customer.id }}">{{ customer.name }} - {{ customer.address }}</option>
+      {% endfor %}
+    </select>
+
+    <input type="hidden" name="searchType" value="ByCustomer" />
+    <input type="submit" value="Search by Customer" />
+  </form>
+
 {% elseif view == "RECIPE_SEARCH" %}
   <p>Searching for all pallets by recipe {{ searchResults.recipe.name }}</p>
 
 {% elseif view == "DATERANGE_SEARCH" %}
   <p>Searching for all pallets by date range ({{ searchResults.start }} - {{ searchResults.end }}).</p>
+
+{% elseif view == "CUSTOMER_SEARCH" %}
+  <p>Searching for delivered pallets by customer {{ customer.name }}.</p>
 
 {% endif %}
 
