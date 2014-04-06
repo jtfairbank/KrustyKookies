@@ -52,14 +52,27 @@ class PalletController implements CrudInterface {
   }
 
   public static function getFree() {
-    $pallets = [];
+    // get db info
+    $db = getDBConn();
 
-    $entries = CrudController::getAll(static::$table);
-    foreach ($entries as $entry) {
-      if (!$entry->blocked) {
-        array_push($pallets, Pallet::FromEntry($entry));
-      }
-    }
+    // build sql statement
+    $vals = [];
+    $sql = <<<SQL
+      SELECT *
+      FROM `pallets`
+      LEFT OUTER JOIN `loading_order_items`
+        ON `pallets`.`id` = `loading_order_items`.`pallet_id`
+      WHERE `pallets`.`blocked` == 0
+        AND `loading_order_items`.`id` IS NULL
+SQL;
+
+    // execute sql
+    $statement = $db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+    $statement->execute($vals);
+
+    // return the models
+    $palletEntries = $statement->fetchAll(PDO::FETCH_OBJ);
+    $pallets = static::palletEntriesToPallets($palletEntries);
 
     return $pallets;
   }
