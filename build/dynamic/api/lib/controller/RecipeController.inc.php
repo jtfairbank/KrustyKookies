@@ -42,7 +42,6 @@ class RecipeController implements CrudInterface {
   protected static function getIngredientEntries($id) {
     // get db info
     $db = getDBConn();
-    $table = "recipe_ingredients";
 
     // build sql statement
     $vals = [
@@ -50,7 +49,7 @@ class RecipeController implements CrudInterface {
     ];
     $sql = <<<SQL
       SELECT *
-      FROM `$table`
+      FROM `recipe_ingredients`
       WHERE `recipe_id` = :recipeID
 SQL;
 

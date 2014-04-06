@@ -24,9 +24,9 @@ class Recipe {
    * ------------------------------------------------------ */
   public function __construct($id, $name, $ingredients) {
     // precondition
-    foreach ($ingredient in $ingredients) {
-      if (!($ingredient typeof RecipeIngredient)) {
-        thrown new InvalidArgumentException("Recipe constructor: all $ingredients must be of type RecipeIngredient.");
+    foreach ($ingredients as $ingredient) {
+      if (!($ingredient instanceof RecipeIngredient)) {
+        throw new InvalidArgumentException("Recipe constructor: all $ingredients must be of type RecipeIngredient.");
       }
     }
 

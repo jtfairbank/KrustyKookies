@@ -30,7 +30,7 @@ class Order {
     }
 
     // precondition
-    foreach ($items in $item) {
+    foreach ($items as $item) {
       if (!($item instanceof OrderItem)) {
         throw new InvalidArgumentException("Order constructor: all $items must be of type OrderItem.");
       }
