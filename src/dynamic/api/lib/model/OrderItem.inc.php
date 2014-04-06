@@ -39,9 +39,9 @@ class OrderItem implements ModelInterface {
 
   public static function FromEntry($entry, $prefix = "") {
     return new OrderItem(
-      $entry[$prefix."id"],
-      $entry[$prefix."order_id"],
-      RecipeController::get($entry[$prefix."recipe_id"])
+      $entry->{$prefix."id"},
+      $entry->{$prefix."order_id"},
+      RecipeController::get($entry->{$prefix."recipe_id"})
     );
   }
 

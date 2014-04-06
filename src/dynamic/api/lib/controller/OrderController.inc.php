@@ -93,6 +93,7 @@ SQL;
       LEFT OUTER JOIN `loading_order_items`
         ON `order_items`.`id` = `loading_order_items`.`order_item_id`
       WHERE `loading_order_items`.`id` IS NULL
+      ORDER BY `order`.`delivery_date`, `order`.`id`
 SQL;
 
     $statement = $db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));

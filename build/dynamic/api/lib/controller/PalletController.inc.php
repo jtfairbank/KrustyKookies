@@ -62,8 +62,9 @@ class PalletController implements CrudInterface {
       FROM `pallets`
       LEFT OUTER JOIN `loading_order_items`
         ON `pallets`.`id` = `loading_order_items`.`pallet_id`
-      WHERE `pallets`.`blocked` == 0
+      WHERE `pallets`.`blocked` = 0
         AND `loading_order_items`.`id` IS NULL
+      ORDER BY `pallets`.`produced_on`
 SQL;
 
     // execute sql
