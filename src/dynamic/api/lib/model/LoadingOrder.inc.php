@@ -12,12 +12,24 @@ class LoadingOrder {
   public $items;
 
   public function __toString() {
-    return "" . $this->id . $this->truckID . $this->items;
+    $itemsString = "";
+    foreach ($items as $item) {
+      $itemsString .= $item;
+    }
+
+    return "" . $this->id . $this->truckID . $itemsString;
   }
 
   /* Constructor
    * ------------------------------------------------------ */
   public function __construct($id, $truckID, $items) {
+    // precondition
+    foreach ($items as $item) {
+      if (!($item instanceOf LoadingOrderItem)) {
+        throw new InvalidArgumentException("LoadingOrder constructor: all $items must be of type LoadingOrderItems.");
+      }
+    }
+
     $this->id = $id;
     $this->truckID = $truckID;
     $this->items = $items;

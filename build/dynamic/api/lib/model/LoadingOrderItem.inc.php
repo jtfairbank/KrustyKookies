@@ -15,7 +15,7 @@ class LoadingOrderItem implements ModelInterface {
   /* Constructors
    * ------------------------------------------------------ */
   public function __construct($id, $loadingOrderID, $pallet) {
-    // precondition: $pallet must be a Pallet
+    // precondition
     if (!($pallet instanceof Pallet)) {
       throw new InvalidArgumentException("LoadingOrderItem constructor: the $pallet arguement must be of type Pallet.");
     }

@@ -16,7 +16,7 @@ class RecipeIngredient implements ModelInterface {
   /* Constructors
    * ------------------------------------------------------ */
   public function __construct($id, $recipeID, $rawMaterial, $amount) {
-    // precondition: $rawMaterial must be a RawMaterial
+    // precondition
     if (!($rawMaterial instanceof RawMaterial)) {
       throw new InvalidArgumentException("RecipeIngredient constructor: the $pallet arguement must be of type RawMaterial.");
     }

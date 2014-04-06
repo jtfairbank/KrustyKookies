@@ -13,15 +13,27 @@ class Order {
   public $items;
 
   public function __toString() {
-    return "" . $this->id . $this->customer . $this->deliveryDate . $this->items;
+    $itemsString = "";
+    foreach ($this->items as $item) {
+      $itemsString .= $item;
+    }
+
+    return "" . $this->id . $this->customer . $this->deliveryDate . $itemsString;
   }
 
   /* Constructors
    * ------------------------------------------------------ */
   public function __construct($id, $customer, $deliveryDate, $items) {
-    // precondition: $customer must be a Customer
+    // precondition
     if (!($customer instanceof Customer)) {
       throw new InvalidArgumentException("Order constructor: the $customer arguement must be of type Customer.");
+    }
+
+    // precondition
+    foreach ($items in $item) {
+      if (!($item instanceof OrderItem)) {
+        throw new InvalidArgumentException("Order constructor: all $items must be of type OrderItem.");
+      }
     }
 
     $this->id = $id;

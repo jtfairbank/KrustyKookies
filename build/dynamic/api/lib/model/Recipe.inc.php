@@ -23,6 +23,13 @@ class Recipe {
   /* Constructor
    * ------------------------------------------------------ */
   public function __construct($id, $name, $ingredients) {
+    // precondition
+    foreach ($ingredient in $ingredients) {
+      if (!($ingredient typeof RecipeIngredient)) {
+        thrown new InvalidArgumentException("Recipe constructor: all $ingredients must be of type RecipeIngredient.");
+      }
+    }
+
     $this->id = $id;
     $this->name = $name;
     $this->ingredients = $ingredients;

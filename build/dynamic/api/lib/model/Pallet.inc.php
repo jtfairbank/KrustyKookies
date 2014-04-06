@@ -16,7 +16,7 @@ class Pallet implements ModelInterface {
   /* Constructors
    * ------------------------------------------------------ */
   public function __construct($id, $recipe, $producedOn, $blocked) {
-    // precondition: $recipe must be a Recipe
+    // precondition
     if (!($recipe instanceof Recipe)) {
       throw new InvalidArgumentException("Pallet constructor: the $recipe arguement must be of type Recipe.");
     }
