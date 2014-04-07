@@ -44,15 +44,26 @@
   </form>
 
 {% else %}
-  <p class="alert alert-success">
-    {{ blockResults.recipe.name }} pallets created from
-    {{ blockResults.start }} through {{ blockResults.end }}
-    were blocked from shipment.
+  {% if blockResults.pallets | length > 0 %}
+    <p class="alert alert-success">
+      {{ blockResults.recipe.name }} pallets created from
+      {{ blockResults.start }} through {{ blockResults.end }}
+      were blocked from shipment.
 
-    <a href="blockPallets.php">Go Back</a>
-  </p>
+      <a href="blockPallets.php">Go Back</a>
+    </p>
 
-  {{ listPallets(blockResults.pallets) }}
+    {{ listPallets(blockResults.pallets) }}
+
+  {% else %}
+    <p class="alert alert-warning">
+      There were no {{ blockResults.recipe.name }} pallets to block during the
+      date range {{ blockResults.start }} through {{ blockResults.end }}.
+
+      <a href="blockPallets.php">Go Back</a>
+    </p>
+
+  {% endif %}
 
 {% endif %}
 
