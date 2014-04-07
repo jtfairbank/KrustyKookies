@@ -13,12 +13,13 @@ software system.  The pilot will focus on the production side.
  0. Intro
  1. Specifications
  2. Setup
- 3. Lib
+ 3. Testing
+ 4. Lib
 
 
 Specifications
 ------------------------------------------------------------
-KK needs three distinct systems that all work together.
+KK needs three distinct systems that all work together.  This pilot program will implement the full database and the functionality described in the second system (Cookie Monster).
 
 ### General ###
 
@@ -94,6 +95,8 @@ Requirements:
 Setup
 ------------------------------------------------------------
 
+This software has been tested with PHP 5.4 and MySQL 5.5.
+
 ### Installation ###
 
  1. [Clone the source.](https://github.com/jtfairbank/KrustyKookies)
@@ -110,6 +113,13 @@ Setup
 ### Web App ###
 
  1. Point your webserver to `build/`.
+
+
+Testing
+------------------------------------------------------------
+You can test the project by hand using the web interface.  Simply start up a webserver pointed to `build/` an navigate around the site.  It's entirely self explanatory.
+
+Alterantively, you can use automated tests with [PHP Unit](http://phpunit.de/) to test the application logic and database interactions.
 
 
 Lib
