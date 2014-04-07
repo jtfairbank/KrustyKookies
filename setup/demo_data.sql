@@ -177,44 +177,45 @@ VALUES                            # order 1
 INSERT INTO `pallets` (
   `recipe_id`,
   `produced_on`,
+  `checked_out_on`,
   `blocked`
 )
-VALUES                            # fill order_items for loading_order_items below
-                                       # order 2
-       (1, "2013-04-15", 0),                # id == 1
-       (2, "2013-04-15", 0),                # id == 2
-       (5, "2013-04-15", 0),                # id == 3
+VALUES                                                # fill order_items for loading_order_items below
+                                                          # order 2
+       (1, "2013-04-15", CURRENT_TIMESTAMP, 0),                 # id == 1
+       (2, "2013-04-15", CURRENT_TIMESTAMP, 0),                 # id == 2
+       (5, "2013-04-15", CURRENT_TIMESTAMP, 0),                 # id == 3
 
-                                       # order 3
-       (4, "2013-04-15", 0),                # id == 4
-       (4, "2013-04-15", 0),                # id == 5
-       (4, "2013-04-15", 0),                # id == 6
+                                                           # order 3
+       (4, "2013-04-15", CURRENT_TIMESTAMP, 0),                 # id == 4
+       (4, "2013-04-15", CURRENT_TIMESTAMP, 0),                 # id == 5
+       (4, "2013-04-15", CURRENT_TIMESTAMP, 0),                 # id == 6
 
-                                       # order 4
-       (6, "2014-04-17", 0),                # id == 7
-       (6, "2014-04-16", 0),                # id == 8
-       (6, "2014-04-15", 0),                # id == 9
+                                                           # order 4
+       (6, "2014-04-17", CURRENT_TIMESTAMP, 0),                 # id == 7
+       (6, "2014-04-16", CURRENT_TIMESTAMP, 0),                 # id == 8
+       (6, "2014-04-15", CURRENT_TIMESTAMP, 0),                 # id == 9
 
-                                  # more recent pallets
-       (6, "2014-04-19", 0),                # id == 10
-                                            # Note the date is more recent than those of order #4's pallets,
-                                            # so this pallet shouldn't be used to fulfill that order.
+                                                      # more recent pallets
+       (6, "2014-04-19", CURRENT_TIMESTAMP, 0),                 # id == 10
+                                                                # Note the date is more recent than those of order #4's pallets,
+                                                                # so this pallet shouldn't be used to fulfill that order.
 
-                                  # some blocked pallets
-       (1, "2014-04-21", 1),                # id == 11
-       (2, "2014-04-21", 1),                # id == 12
-       (4, "2014-04-21", 1),                # id == 13
-       (5, "2014-04-21", 1),                # id == 14
-       (6, "2014-04-14", 1),                # id == 15
-                                            # Note the date is less recent than those of order #4's pallets,
-                                            # but this pallet is blocked so it shouldn't be used to fulfill that order.
+                                                      # some blocked pallets
+       (1, "2014-04-21", NULL, 1),                              # id == 11
+       (2, "2014-04-21", NULL, 1),                              # id == 12
+       (4, "2014-04-21", NULL, 1),                              # id == 13
+       (5, "2014-04-21", NULL, 1),                              # id == 14
+       (6, "2014-04-14", NULL, 1),                              # id == 15
+                                                                # Note the date is less recent than those of order #4's pallets,
+                                                                # but this pallet is blocked so it shouldn't be used to fulfill that order.
 
-                                  # extra pallets
-       (1, "2014-04-21", 0),                # id == 16
-       (2, "2014-04-21", 0),                # id == 16
-       (4, "2014-04-21", 0),                # id == 16
-       (5, "2014-04-21", 0),                # id == 16
-       (6, "2014-04-21", 0);                # id == 16
+                                                      # extra pallets
+       (1, "2014-04-21", CURRENT_TIMESTAMP, 0),                 # id == 16
+       (2, "2014-04-21", CURRENT_TIMESTAMP, 0),                 # id == 16
+       (4, "2014-04-21", CURRENT_TIMESTAMP, 0),                 # id == 16
+       (5, "2014-04-21", CURRENT_TIMESTAMP, 0),                 # id == 16
+       (6, "2014-04-21", CURRENT_TIMESTAMP, 0);                 # id == 16
 
 
 

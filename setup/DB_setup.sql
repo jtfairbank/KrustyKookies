@@ -87,6 +87,7 @@ CREATE TABLE `pallets` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `recipe_id` int(10) NOT NULL,
   `produced_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `checked_out_on` timestamp NULL DEFAULT NULL,
   `blocked` int(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `recipe_id` (`recipe_id`)

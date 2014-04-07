@@ -57,14 +57,24 @@ class PalletController implements CrudInterface {
 
     // build sql statement
     $vals = [];
+
+    // Simplify the interaction with the DB, since our pilot only needs to test
+    // checkout functionality, and the Loading Orders are created manually.
+/*
     $sql = <<<SQL
-      SELECT *
+      SELECT `pallets`.*
       FROM `pallets`
       LEFT OUTER JOIN `loading_order_items`
         ON `pallets`.`id` = `loading_order_items`.`pallet_id`
       WHERE `pallets`.`blocked` = 0
         AND `loading_order_items`.`id` IS NULL
       ORDER BY `pallets`.`produced_on`
+SQL;
+*/
+    $sql = <<<SQL
+      SELECT `pallets`.*
+      FROM `pallets`
+      WHERE `checked_out_on` IS NULL;
 SQL;
 
     // execute sql
@@ -194,6 +204,24 @@ SQL;
     }
 
     return $blockedPallets;
+  }
+
+  public static function checkout($palletID) {
+    $db = getDBConn();
+
+    $vals = [
+      ":palletID" => $palletID,
+    ];
+    $sql = <<<SQL
+      UPDATE `pallets`
+      SET  `checked_out_on` = CURRENT_TIMESTAMP
+      WHERE `id` = :palletID
+SQL;
+
+    $statement = $db->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+    $statement->execute($vals);
+
+    return static::get($palletID);
   }
 
 

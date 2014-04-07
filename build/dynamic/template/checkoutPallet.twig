@@ -2,7 +2,7 @@
 
 {% if view == "FORM" %}
   <form action="checkoutPallet.php" method="POST">
-    <select name="pallet">
+    <select name="palletID">
       <option value=""></option>
 
       {% for pallet in pallets %}
@@ -11,27 +11,14 @@
 
     </select>
 
-    <select name="orders">
-      <option value=""></option>
-
-      {% for order in orders %}
-        {% for item in order.items %}
-        <option value="{{ item.id }}">{{ item.recipe.name }} | {{ order.customer.name }} | {{ order.deliveryDate }}</option>
-        {% endfor %}
-      {% endfor %}
-    </select>
-
     <input name="checkout" type="submit" value="Check Out Pallet" />
   </form>
 
-{% elseif view == "CHECKED_IN" %}
+{% elseif view == "CHECKED_OUT" %}
   <p class="alert alert-success">
-    The pallet was successfully checked into the deep freezer.
-    <a href="checkinPallet.php">Go Back</a>
+    The pallet was successfully checked out of the deepfreezer.
+    <a href="checkoutPallet.php">Go Back</a>
   </p>
-
-{% elseif view == "CHECKIN_FAILED" %}
-  <p class="alert alert-error">The pallet could not be created because not enough materials exist.</p>
 
 {% endif %}
 

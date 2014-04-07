@@ -3,10 +3,12 @@ require_once('dynamic/template/setup.php');
 require_once('dynamic/api/lib/loader.php');
 
 $view = 'FORM';
+$checkedOut = null;
 if (array_key_exists('checkout', $_POST)) {
-  $view = 'CHECKED_OUT';
+  $pallet = PalletController::checkout($_POST['palletID']);
 
-  // TODO
+  $view = 'CHECKED_OUT';
+  $checkedOut = $pallet;
 }
 
 echo $twig->render("checkoutPallet.twig", array(
@@ -16,6 +18,9 @@ echo $twig->render("checkoutPallet.twig", array(
   // FORM view
   'pallets' => PalletController::getFree(),
   'orders' => OrderController::getUnfulfilled(),
+
+  // CHECKED OUT view
+  'checkedOut' => $checkedOut,
 ));
 
 ?>
