@@ -651,6 +651,7 @@ module.exports = function(grunt) {
  */
   grunt.registerTask('build', [
       'clean:build'
+    , 'trimtrailingspaces'
     , 'build_pages'
     , 'build_lib'
     , 'build_dynamic'
@@ -696,8 +697,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build_scss', [
-        'trimtrailingspaces:scss'
-      , 'sass:stylin'
+        'sass:stylin'
       , 'sass:stylin_min'
     ]);
 

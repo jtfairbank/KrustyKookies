@@ -1,31 +1,31 @@
 {% macro listPallets(pallets) %}
 
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Recipe</th>
-        <th>Produced On</th>
-        <th>Blocked</th>
-      </tr>
-    </thead>
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Recipe</th>
+      <th>Produced On</th>
+      <th>Blocked</th>
+    </tr>
+  </thead>
 
-    <tbody>
-      {% for pallet in pallets %}
-      <tr>
-        <td>{{ pallet.id }}</td>
-        <td>{{ pallet.recipe.name }}</td>
-        <td>{{ pallet.producedOn }}</td>
-        <td>
-          {% if pallet.blocked == true %}
-            yes
-          {% else %}
-            no
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <tbody>
+    {% for pallet in pallets %}
+    <tr>
+      <td>{{ pallet.id }}</td>
+      <td>{{ pallet.recipe.name }}</td>
+      <td>{{ pallet.producedOn }}</td>
+      <td>
+        {% if pallet.blocked == true %}
+          yes
+        {% else %}
+          no
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 {% endmacro %}

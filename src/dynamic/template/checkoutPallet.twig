@@ -1,17 +1,29 @@
+{% extends "site.twig" %}
+
 {% block content %}
 
 {% if view == "FORM" %}
-  <form action="checkoutPallet.php" method="POST">
-    <select name="palletID">
-      <option value=""></option>
+  <form class="form-horizontal" action="checkoutPallet.php" method="POST">
 
-      {% for pallet in pallets %}
-      <option value="{{ pallet.id }}">{{ pallet.recipe.name }} | {{ pallet.producedOn }}</option>
-      {% endfor %}
+    <div class="form-group">
+      <label for="palletID" class="control-label col-md-2">Pallet:</label>
 
-    </select>
+      <div class="col-md-4">
+        <select name="palletID" class="form-control" required>
+          <option value=""></option>
 
-    <input name="checkout" type="submit" value="Check Out Pallet" />
+          {% for pallet in pallets %}
+          <option value="{{ pallet.id }}">{{ pallet.recipe.name }} | {{ pallet.producedOn }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-4">
+        <input name="checkout" type="submit" value="Check Out Pallet" />
+      </div>
+    </div>
   </form>
 
 {% elseif view == "CHECKED_OUT" %}

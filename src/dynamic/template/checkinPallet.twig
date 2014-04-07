@@ -1,17 +1,29 @@
+{% extends "site.twig" %}
+
 {% block content %}
 
 {% if view == "FORM" %}
-  <form action="checkinPallet.php" method="POST">
-    <select name="recipeID">
-      <option value=""></option>
+  <form class="form-horizontal" action="checkinPallet.php" method="POST">
 
-      {% for recipe in recipes %}
-      <option value="{{ recipe.id }}">{{ recipe.name }}</option>
-      {% endfor %}
+    <div class="form-group">
+      <label for="recipeID" class="control-label col-md-2">Pallet Type:</label>
 
-    </select>
+      <div class="col-md-4">
+        <select name="recipeID" class="form-control" required>
+          <option value=""></option>
 
-    <input name="checkin" type="submit" value="Check In Pallet" />
+          {% for recipe in recipes %}
+          <option value="{{ recipe.id }}">{{ recipe.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-4">
+        <input name="checkin" type="submit" value="Check In Pallet" />
+      </div>
+    </div>
   </form>
 
 {% elseif view == "CHECKED_IN" %}

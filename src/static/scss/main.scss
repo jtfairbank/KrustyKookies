@@ -1,0 +1,50 @@
+/* General
+ * ========================================================================== */
+
+img {
+  max-width: 100%;
+}
+
+form {
+  margin-bottom: 30px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* Bootstrap Overrides
+ * ------------------------------------------------------ */
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.alert:last-child {
+  margin-bottom: 0;
+}
+
+
+/* Sitewide
+ * ========================================================================== */
+
+.mainNav > .nav {
+  display: inline-block;
+}
+
+#content {
+  margin-top: 10px; // header already has an extra 5px of padding
+  margin-bottom: 15px;
+
+  > div {
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    border-top: 3px solid #CCC;
+    border-bottom: 3px solid #CCC;
+  }
+}
+
+
+/* Components
+ * ========================================================================== */
+

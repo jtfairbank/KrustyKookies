@@ -1,61 +1,100 @@
 {% from "palletList.twig" import listPallets as listPallets %}
 
+{% extends "site.twig" %}
+
 {% block content %}
 
 {% if view == "CHOOSE_SEARCH" %}
-  <form action="searchPallets.php" method="GET">
-    <p>Search pallets by Recipe:</p>
+  <form class="form-horizontal" action="searchPallets.php" method="GET">
+    <p>Search pallets by Recipe.</p>
 
-    <select name="recipeID">
-      <option value=""></option>
+    <div class="form-group">
+      <label for="recipeID" class="control-label col-md-2">Recipe Type:</label>
 
-      {% for recipe in recipes %}
-      <option value="{{ recipe.id }}">{{ recipe.name }}</option>
-      {% endfor %}
-    </select>
+      <div class="col-md-4">
+        <select name="recipeID" class="form-control" required>
+          <option value=""></option>
 
-    <input type="hidden" name="searchType" value="ByRecipe" />
-    <input type="submit" value="Search by Recipe" />
+          {% for recipe in recipes %}
+          <option value="{{ recipe.id }}">{{ recipe.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-4">
+        <input type="hidden" name="searchType" value="ByRecipe" />
+        <input type="submit" value="Search by Recipe" />
+      </div>
+    </div>
   </form>
 
-  <form action="searchPallets.php" method="GET">
-    <p>Search pallets by Date Range:</p>
+  <form class="form-horizontal" action="searchPallets.php" method="GET">
+    <p>Search pallets by Date Range.</p>
 
-    <input type="date" name="start" value="" />
-    <input type="date" name="end" value="" />
+    <div class="form-group">
+      <label for="start" class="control-label col-md-2">From:</label>
 
-    <input type="hidden" name="searchType" value="ByDateRange" />
-    <input type="submit" value="Search by Date Range" />
+      <div class="col-md-4">
+        <input type="date" name="start" value="" class="form-control" required />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="end" class="control-label col-md-2">Through:</label>
+
+      <div class="col-md-4">
+        <input type="date" name="end" value="" class="form-control" required />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-4">
+        <input type="hidden" name="searchType" value="ByDateRange" />
+        <input type="submit" value="Search by Date Range" />
+      </div>
+    </div>
   </form>
 
-  <form action="searchPallets.php" method="GET">
-    <p>Search delivered pallets by Customer:</p>
+  <form class="form-horizontal" action="searchPallets.php" method="GET">
+    <p>Search delivered pallets by Customer.</p>
 
-    <select name="customerID">
-      <option value=""></option>
+    <div class="form-group">
+      <label for="recipeID" class="control-label col-md-2">Customer:</label>
 
-      {% for customer in customers %}
-      <option value="{{ customer.id }}">{{ customer.name }} - {{ customer.address }}</option>
-      {% endfor %}
-    </select>
+      <div class="col-md-4">
+        <select name="customerID" class="form-control" required>
+          <option value=""></option>
 
-    <input type="hidden" name="searchType" value="ByCustomer" />
-    <input type="submit" value="Search by Customer" />
+          {% for customer in customers %}
+          <option value="{{ customer.id }}">{{ customer.name }} - {{ customer.address }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-offset-2 col-md-4">
+        <input type="hidden" name="searchType" value="ByCustomer" />
+        <input type="submit" value="Search by Customer" />
+      </div>
+    </div>
   </form>
 
 {% elseif view == "RECIPE_SEARCH" %}
-  <p>Searching for all pallets by recipe {{ searchResults.recipe.name }}</p>
+  <p>Searching for all pallets by recipe {{ searchResults.recipe.name }}.</p>
 
 {% elseif view == "DATERANGE_SEARCH" %}
   <p>Searching for all pallets by date range ({{ searchResults.start }} - {{ searchResults.end }}).</p>
 
 {% elseif view == "CUSTOMER_SEARCH" %}
-  <p>Searching for delivered pallets by customer {{ customer.name }}.</p>
+  <p>Searching for delivered pallets by customer {{ searchResults.customer.name }}.</p>
 
 {% endif %}
 
 {% if view != "CHOOSE_SEARCH" %}
-  <p><a href="searchPallets.php">Go back to search.</a></p>
+  <p><a href="searchPallets.php">Go Back</a></p>
 
   {{ listPallets(searchResults.pallets) }}
 

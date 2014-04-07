@@ -1,0 +1,34 @@
+/* General
+ * ========================================================================== */
+img {
+  max-width: 100%; }
+
+form {
+  margin-bottom: 30px; }
+  form:last-child {
+    margin-bottom: 0; }
+
+/* Bootstrap Overrides
+ * ------------------------------------------------------ */
+.form-group:last-child {
+  margin-bottom: 0; }
+
+.alert:last-child {
+  margin-bottom: 0; }
+
+/* Sitewide
+ * ========================================================================== */
+.mainNav > .nav {
+  display: inline-block; }
+
+#content {
+  margin-top: 10px;
+  margin-bottom: 15px; }
+  #content > div {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top: 3px solid #CCC;
+    border-bottom: 3px solid #CCC; }
+
+/* Components
+ * ========================================================================== */

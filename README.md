@@ -13,6 +13,7 @@ software system.  The pilot will focus on the production side.
  0. Intro
  1. Specifications
  2. Setup
+ 3. Lib
 
 
 Specifications
@@ -109,3 +110,29 @@ Setup
 ### Web App ###
 
  1. Point your webserver to `build/`.
+
+
+Lib
+------------------------------------------------------------
+
+### Twitter Bootstrap ###
+
+A CSS library that provides basic styles.
+
+http://getbootstrap.com/
+
+### jQuery ###
+
+A js library that makes DOM manipulation, ajax, and other things super easy.
+
+http://jquery.com/
+
+### Twig ###
+
+A php based templating library.
+
+http://twig.sensiolabs.org/
+
+### Images ###
+
+  * `static/img/cookies.jpg` taken with permission from [Wikipedia](http://en.wikipedia.org/wiki/File:Chocolate_Chip_Cookies_-_kimberlykv.jpg).  Thanks to [kimberlykv](http://flickr.com/photos/87542849@N00/4643536339) for the original.
